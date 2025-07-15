@@ -27,7 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         getjson.cpp \
-        leftbutton.cpp \
+        leftbar.cpp \
         main_minimal.cpp \
         mainwindow.cpp \
         map.cpp \
@@ -40,7 +40,7 @@ SOURCES += \
 
 HEADERS += \
         getjson.h \
-        leftbutton.h \
+        leftbar.h \
         mainwindow.h \
         map.h \
         workspace.h \
@@ -52,7 +52,7 @@ HEADERS += \
         commondef.h
 
 FORMS += \
-        leftbutton.ui \
+        leftbar.ui \
         mainwindow.ui \
         map.ui \
         zoomadjust.ui

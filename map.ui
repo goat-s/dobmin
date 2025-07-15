@@ -1067,7 +1067,7 @@ QToolBar::separator {
   </widget>
   <action name="action_editmap">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/edit.png</normaloff>:/Icon/edit.png</iconset>
    </property>
    <property name="text">
@@ -1079,7 +1079,7 @@ QToolBar::separator {
   </action>
   <action name="action_loadmap">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/open.png</normaloff>:/Icon/open.png</iconset>
    </property>
    <property name="text">
@@ -1091,7 +1091,7 @@ QToolBar::separator {
   </action>
   <action name="action_2dmap">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/2dmap.png</normaloff>:/Icon/2dmap.png</iconset>
    </property>
    <property name="text">
@@ -1103,7 +1103,7 @@ QToolBar::separator {
   </action>
   <action name="action_pointer">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/pointer.png</normaloff>:/Icon/pointer.png</iconset>
    </property>
    <property name="text">
@@ -1115,7 +1115,7 @@ QToolBar::separator {
   </action>
   <action name="action_pot">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/pot.png</normaloff>:/Icon/pot.png</iconset>
    </property>
    <property name="text">
@@ -1124,7 +1124,7 @@ QToolBar::separator {
   </action>
   <action name="action_route">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/route.png</normaloff>:/Icon/route.png</iconset>
    </property>
    <property name="text">
@@ -1133,7 +1133,7 @@ QToolBar::separator {
   </action>
   <action name="action_eraser">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/eraser.png</normaloff>:/Icon/eraser.png</iconset>
    </property>
    <property name="text">
@@ -1142,7 +1142,7 @@ QToolBar::separator {
   </action>
   <action name="action_delete">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/delete.png</normaloff>:/Icon/delete.png</iconset>
    </property>
    <property name="text">
@@ -1154,7 +1154,7 @@ QToolBar::separator {
   </action>
   <action name="action_free_navi">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/PathNavi.png</normaloff>:/Icon/PathNavi.png</iconset>
    </property>
    <property name="text">
@@ -1166,7 +1166,7 @@ QToolBar::separator {
   </action>
   <action name="action_cancel_navi">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/CancelNavi.png</normaloff>:/Icon/CancelNavi.png</iconset>
    </property>
    <property name="text">
@@ -1181,7 +1181,7 @@ QToolBar::separator {
   </action>
   <action name="action_pause_navi">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/PauseNavi.png</normaloff>:/Icon/PauseNavi.png</iconset>
    </property>
    <property name="text">
@@ -1190,7 +1190,7 @@ QToolBar::separator {
   </action>
   <action name="action_revolve">
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/Icon/revolve.png</normaloff>:/Icon/revolve.png</iconset>
    </property>
    <property name="text">
@@ -1206,8 +1206,6 @@ QToolBar::separator {
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="res.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

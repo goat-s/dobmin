@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>523</width>
-    <height>429</height>
+    <width>530</width>
+    <height>409</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -138,7 +138,7 @@
            <number>0</number>
           </property>
           <property name="leftMargin">
-           <number>0</number>
+           <number>6</number>
           </property>
           <property name="topMargin">
            <number>0</number>
@@ -185,45 +185,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QToolBar" name="leftBar">
+  <widget class="QDockWidget" name="bottomDock">
    <property name="minimumSize">
     <size>
-     <width>0</width>
-     <height>0</height>
+     <width>58</width>
+     <height>35</height>
     </size>
    </property>
-   <property name="maximumSize">
-    <size>
-     <width>400</width>
-     <height>16777215</height>
-    </size>
-   </property>
-   <property name="movable">
-    <bool>false</bool>
-   </property>
-   <property name="allowedAreas">
-    <set>Qt::LeftToolBarArea</set>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Vertical</enum>
-   </property>
-   <property name="iconSize">
-    <size>
-     <width>18</width>
-     <height>18</height>
-    </size>
-   </property>
-   <property name="floatable">
-    <bool>false</bool>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>LeftToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QDockWidget" name="bottomDock">
    <attribute name="dockWidgetArea">
     <number>8</number>
    </attribute>

@@ -9,20 +9,22 @@
 #include <qtmaterialdrawer.h>
 #include <QTextDocument>
 #include <QTimer>
-
+#include "leftbar.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)// 创建UI对象
 {
     ui->setupUi(this); // 设置UI界面
+    QList<int> sizes;
+    sizes<<5<<500;
+    ui->splitter->setSizes(sizes);
 
     this->setWindowTitle("WorkXP"); // 设置窗口标题
-    //加入地图页面
-    Map* map = new Map();
-    ui->leftBar->addWidget(map);
 
-//    ui->QtableWidget->insertTab(0, map, "地图与控制");
+    leftbar* m_leftbar = new leftbar(this);
+    ui->verticalLayout_2->addWidget(m_leftbar);
+
     connect(ui->zoomPart, &ZoomAdjust::factorChanged,
             ui->workspace, [w = ui->workspace](int p){ w->setZoomPercent(p); });
     // 连接缩放调整部件的缩放到适合大小信号
