@@ -1,0 +1,15 @@
+{
+    "name": "MyTaskChain",
+    "tasks": [
+        {
+            "direction": "up",
+            "externalTrigger": 0,
+            "nonBlocking": false,
+            "postBlockMs": 0,
+            "targetpoint": "",
+            "taskName": "lift",
+            "timeoutMs": 0
+        }
+    ],
+    "type": "task_chain"
+}

@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>styles/light.css</file>
+        <file>translations/wxp_zh.qm</file>
+        <file>styles/palette.ini</file>
+        <file>icons/zoom.svg</file>
+    </qresource>
+</RCC>

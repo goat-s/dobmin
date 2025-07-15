@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Icon/titleicon.png</file>
+        <file>style1.qss</file>
+        <file>style2.qss</file>
+        <file>Icon/edit.png</file>
+        <file>Icon/open.png</file>
+        <file>Icon/2dmap.png</file>
+        <file>style.qss</file>
+        <file>Icon/delete.png</file>
+        <file>Icon/eraser.png</file>
+        <file>Icon/pointer.png</file>
+        <file>Icon/pot.png</file>
+        <file>Icon/route.png</file>
+        <file>Icon/setting.png</file>
+        <file>Icon/CancelNavi.png</file>
+        <file>Icon/FreeNavigation.png</file>
+        <file>Icon/PathNavi.png</file>
+        <file>Icon/PauseNavi.png</file>
+        <file>Icon/revolve.png</file>
+    </qresource>
+</RCC>
