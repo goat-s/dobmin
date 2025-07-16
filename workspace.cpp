@@ -5,12 +5,21 @@
 #include <QDebug>         // Qt调试输出
 #include <QWheelEvent>    // Qt滚轮事件
 #include <QTimer>         //新增：当滚动条初始化后，居中到地图内容中心
+#include <QCursor>
+#include <QPixmap>
+#include <QGraphicsSvgItem>
+#include <QFile>
 
 // Workspace构造函数
 Workspace::Workspace(QWidget *parent):
     BaseSpace(parent)   // 调用基类BaseSpace的构造函数
     //m_document(0)        // 初始化文档指针为nullptr
 {
+    setAcceptDrops(true); // 支持拖放
+    this->viewport()->setAcceptDrops(true); // 让 viewport 也支持拖放
+    if (!this->scene()) {
+        this->setScene(new QGraphicsScene(this));
+    }
     // 创建水平标尺
     m_hruler = new QtRuleBar(Qt::Horizontal,this,this);
     // 创建垂直标尺
@@ -55,6 +64,11 @@ void Workspace::mouseMoveEvent(QMouseEvent *event)
     // 调用基类的鼠标移动处理
     BaseSpace::mouseMoveEvent(event);
 }
+
+//void Workspace::paintEvent(QPaintEvent *event)
+//{
+//    QGraphicsView::paintEvent(event);
+//}
 
 // 窗口大小改变事件处理    标尺在workspace上的实际布局位置
 void Workspace::resizeEvent(QResizeEvent *event)
@@ -174,6 +188,37 @@ void Workspace::wheelEvent(QWheelEvent *event)
     
     // 接受事件，防止传递给父类
     event->accept();
+}
+
+void Workspace::setDrawCarMode(bool enable) {
+    m_drawCarMode = enable;
+    if (enable) {
+        QPixmap carPixmap(":/icons/distributehorizontally.svg");
+        QPixmap scaledPixmap = carPixmap.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        this->setCursor(QCursor(scaledPixmap));
+    } else {
+        this->unsetCursor();
+    }
+}
+
+void Workspace::mousePressEvent(QMouseEvent *event)
+{
+    if (m_drawCarMode && event->button() == Qt::LeftButton) {
+        qDebug() << "[Workspace] mousePressEvent triggered";
+        QFile file(":/icons/distributehorizontally.svg");
+        qDebug() << "SVG exists:" << file.exists();
+        QPointF scenePos = mapToScene(event->pos());
+        QGraphicsSvgItem* carItem = new QGraphicsSvgItem(":/icons/distributehorizontally.svg");
+        carItem->setScale(0.005); // 你觉得合适的缩放
+        QRectF rect = carItem->boundingRect();
+        QPointF offset = rect.center();
+        carItem->setPos(scenePos - offset * carItem->scale());
+        this->scene()->addItem(carItem);
+        qDebug() << "[Workspace] carItem added at" << carItem->pos();
+        event->accept();
+        return;
+    }
+    QGraphicsView::mousePressEvent(event);
 }
 
 

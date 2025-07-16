@@ -2,6 +2,7 @@
 #define LEFTBAR_H
 
 #include <QWidget>
+#include "carbutton.h"//实现小车拖拽
 
 namespace Ui {
 class leftbar;

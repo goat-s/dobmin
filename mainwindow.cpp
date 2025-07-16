@@ -16,14 +16,21 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)// 创建UI对象
 {
     ui->setupUi(this); // 设置UI界面
-    QList<int> sizes;
-    sizes<<5<<500;
-    ui->splitter->setSizes(sizes);
 
     this->setWindowTitle("WorkXP"); // 设置窗口标题
 
     leftbar* m_leftbar = new leftbar(this);
-    ui->verticalLayout_2->addWidget(m_leftbar);
+    ui->leftBar->addWidget(m_leftbar);
+//    ui->verticalLayout_2->addWidget(m_leftbar);
+
+    // 连接 carButton 点击进入画小车模式
+    connect(m_leftbar->findChild<QToolButton*>("carButton"), &QToolButton::clicked, this, [=]() {
+        ui->workspace->setDrawCarMode(true);
+    });
+    // 连接 curserButton 点击退出画小车模式
+    connect(m_leftbar->findChild<QToolButton*>("curserButton"), &QToolButton::clicked, this, [=]() {
+        ui->workspace->setDrawCarMode(false);
+    });
 
     connect(ui->zoomPart, &ZoomAdjust::factorChanged,
             ui->workspace, [w = ui->workspace](int p){ w->setZoomPercent(p); });

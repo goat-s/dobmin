@@ -6,35 +6,41 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>90</width>
+    <width>80</width>
     <height>1500</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>90</width>
-    <height>1500</height>
+    <width>80</width>
+    <height>500</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>90</width>
+    <width>80</width>
     <height>1500</height>
    </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>42</width>
-     <height>1501</height>
+     <width>50</width>
+     <height>391</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>10</number>
+    </property>
     <item>
      <widget class="QToolButton" name="curserButton">
       <property name="minimumSize">
@@ -43,34 +49,46 @@
         <height>40</height>
        </size>
       </property>
-      <property name="text">
-       <string>...</string>
-      </property>
-      <property name="icon">
-       <iconset resource="../23workxp/23.workxp-master/resources.qrc">
-        <normaloff>:/icons/select.svg</normaloff>:/icons/select.svg</iconset>
-      </property>
-      <property name="iconSize">
+      <property name="maximumSize">
        <size>
         <width>40</width>
         <height>40</height>
        </size>
       </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>:/icons/select.svg</normaloff>:/icons/select.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
      </widget>
     </item>
     <item>
-     <widget class="QToolButton" name="carButton">
+     <widget class="CarButton" name="carButton">
       <property name="minimumSize">
        <size>
         <width>40</width>
         <height>40</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="text">
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset resource="../23workxp/23.workxp-master/resources.qrc">
+       <iconset>
         <normaloff>:/icons/distributehorizontally.svg</normaloff>:/icons/distributehorizontally.svg</iconset>
       </property>
       <property name="iconSize">
@@ -89,11 +107,17 @@
         <height>40</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="text">
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset resource="../23workxp/23.workxp-master/resources.qrc">
+       <iconset>
         <normaloff>:/icons/line.svg</normaloff>:/icons/line.svg</iconset>
       </property>
       <property name="iconSize">
@@ -112,11 +136,17 @@
         <height>40</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="text">
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset resource="../23workxp/23.workxp-master/resources.qrc">
+       <iconset>
         <normaloff>:/icons/curve.svg</normaloff>:/icons/curve.svg</iconset>
       </property>
       <property name="iconSize">
@@ -128,21 +158,14 @@
      </widget>
     </item>
     <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
+     <widget class="QToolButton" name="connectButton">
+      <property name="minimumSize">
        <size>
-        <width>20</width>
+        <width>40</width>
         <height>40</height>
        </size>
       </property>
-     </spacer>
-    </item>
-    <item>
-     <widget class="QToolButton" name="connectButton">
-      <property name="minimumSize">
+      <property name="maximumSize">
        <size>
         <width>40</width>
         <height>40</height>
@@ -152,7 +175,7 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset resource="../23workxp/23.workxp-master/resources.qrc">
+       <iconset>
         <normaloff>:/icons/rotate.svg</normaloff>:/icons/rotate.svg</iconset>
       </property>
       <property name="iconSize">
@@ -171,11 +194,17 @@
         <height>40</height>
        </size>
       </property>
+      <property name="maximumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
       <property name="text">
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset resource="../23workxp/23.workxp-master/resources.qrc">
+       <iconset>
         <normaloff>:/icons/home.svg</normaloff>:/icons/home.svg</iconset>
       </property>
       <property name="iconSize">
@@ -188,7 +217,19 @@
     </item>
    </layout>
   </widget>
+  <action name="actiontest">
+   <property name="text">
+    <string>test</string>
+   </property>
+  </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CarButton</class>
+   <extends>QToolButton</extends>
+   <header location="global">carbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

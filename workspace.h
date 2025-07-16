@@ -4,6 +4,11 @@
 #include "basespace.h"
 #include "graphicsitemtype.h"
 #include <QGraphicsItem>
+#include <QDragEnterEvent>
+#include <QDropEvent>
+#include <QMimeData>
+#include <QGraphicsPixmapItem>
+#include <QDragMoveEvent>
 
 class RectElement;
 class BaseElement;
@@ -58,17 +63,25 @@ Q_OBJECT
 
 
 public:
-    Workspace(QWidget *parent = Q_NULLPTR);
-    ~Workspace();
 
+    explicit Workspace(QWidget* parent = nullptr);
+    virtual ~Workspace();
     virtual void init() override;
 
+
+
 private:
+    bool m_drawCarMode = false;
+
+public:
+    void setDrawCarMode(bool enable);
+    bool isDrawCarMode() const { return m_drawCarMode; }
 
 
 public slots:
 
 protected:
+    void mousePressEvent(QMouseEvent * event) Q_DECL_OVERRIDE;
     void mouseMoveEvent(QMouseEvent * event) Q_DECL_OVERRIDE;
     void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
     void scrollContentsBy(int dx, int dy) Q_DECL_OVERRIDE;

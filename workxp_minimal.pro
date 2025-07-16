@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+        carbutton.cpp \
         getjson.cpp \
         leftbar.cpp \
         main_minimal.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
         preferences.cpp
 
 HEADERS += \
+        carbutton.h \
         getjson.h \
         leftbar.h \
         mainwindow.h \
