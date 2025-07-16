@@ -9,6 +9,7 @@
 #include <QMimeData>
 #include <QGraphicsPixmapItem>
 #include <QDragMoveEvent>
+#include <QSet>
 
 class RectElement;
 class BaseElement;
@@ -68,10 +69,18 @@ public:
     virtual ~Workspace();
     virtual void init() override;
 
+public slots:
+    void setToolMode(int mode);
+
 
 
 private:
     bool m_drawCarMode = false;
+    enum ToolMode { Select = 0, DrawCar = 1, Eraser = 2 /*, DrawLine, ...*/ };
+    ToolMode m_toolMode = Select;
+    bool m_erasing = false;
+    QSet<QGraphicsItem*> m_erasedThisDrag;
+    ToolMode toolMode() const { return m_toolMode; }
 
 public:
     void setDrawCarMode(bool enable);
@@ -81,15 +90,17 @@ public:
 public slots:
 
 protected:
-    void mousePressEvent(QMouseEvent * event) Q_DECL_OVERRIDE;
-    void mouseMoveEvent(QMouseEvent * event) Q_DECL_OVERRIDE;
-    void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
-    void scrollContentsBy(int dx, int dy) Q_DECL_OVERRIDE;
-    void wheelEvent(QWheelEvent *event) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
+    void scrollContentsBy(int dx, int dy) override;
+    void wheelEvent(QWheelEvent *event) override;
 
 
 private slots:
     void updateRuler();
+    void eraseAt(const QPoint &viewPos);
 
 
 };

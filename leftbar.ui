@@ -59,7 +59,7 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resources.qrc">
         <normaloff>:/icons/select.svg</normaloff>:/icons/select.svg</iconset>
       </property>
       <property name="iconSize">
@@ -88,8 +88,37 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resources.qrc">
         <normaloff>:/icons/distributehorizontally.svg</normaloff>:/icons/distributehorizontally.svg</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="easerButton" name="eraserButton">
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/icons/eraser.svg</normaloff>:/icons/eraser.svg</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -117,7 +146,7 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resources.qrc">
         <normaloff>:/icons/line.svg</normaloff>:/icons/line.svg</iconset>
       </property>
       <property name="iconSize">
@@ -146,7 +175,7 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resources.qrc">
         <normaloff>:/icons/curve.svg</normaloff>:/icons/curve.svg</iconset>
       </property>
       <property name="iconSize">
@@ -175,7 +204,7 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resources.qrc">
         <normaloff>:/icons/rotate.svg</normaloff>:/icons/rotate.svg</iconset>
       </property>
       <property name="iconSize">
@@ -204,7 +233,7 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset>
+       <iconset resource="resources.qrc">
         <normaloff>:/icons/home.svg</normaloff>:/icons/home.svg</iconset>
       </property>
       <property name="iconSize">
@@ -229,7 +258,14 @@
    <extends>QToolButton</extends>
    <header location="global">carbutton.h</header>
   </customwidget>
+  <customwidget>
+   <class>easerButton</class>
+   <extends>QToolButton</extends>
+   <header location="global">easerbutton.h</header>
+  </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

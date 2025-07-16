@@ -9,6 +9,8 @@
 #include <QPixmap>
 #include <QGraphicsSvgItem>
 #include <QFile>
+#include<baseelement.h>
+#include <QGraphicsEllipseItem>
 
 // Workspace构造函数
 Workspace::Workspace(QWidget *parent):
@@ -61,7 +63,15 @@ void Workspace::mouseMoveEvent(QMouseEvent *event)
     m_hruler->updatePosition(eventPos);
     // 更新垂直标尺位置
     m_vruler->updatePosition(eventPos);
-    // 调用基类的鼠标移动处理
+
+    // 橡皮擦模式下处理擦除
+    if (m_toolMode == Eraser && m_erasing) {
+        eraseAt(event->pos());
+        event->accept();
+        return;
+    }
+
+    // 其他情况，调用基类处理
     BaseSpace::mouseMoveEvent(event);
 }
 
@@ -140,7 +150,7 @@ void Workspace::wheelEvent(QWheelEvent *event)
 
     // 获取滚轮滚动的角度增量
     QPoint numDegrees = event->angleDelta() / 8;
-    
+
     if (!numDegrees.isNull()) {
         // 计算缩放因子
         qreal scaleFactor = 1.0;
@@ -167,25 +177,25 @@ void Workspace::wheelEvent(QWheelEvent *event)
 
         // 以鼠标位置为中心进行缩放
         QPointF mousePos = event->pos();
-        
+
         // 保存鼠标在场景中的位置
         QPointF scenePos = mapToScene(mousePos.toPoint());
-        
+
         // 应用缩放 - 使用zoom函数确保发出scaled信号
         zoom(newScale);
-        
+
         // 重新计算鼠标在视图中的位置，保持鼠标指向的场景位置不变
         QPointF newViewPos = mapFromScene(scenePos);
         QPointF delta = newViewPos - mousePos;
-        
+
         // 调整滚动条位置，使鼠标指向的内容保持在鼠标位置
         horizontalScrollBar()->setValue(horizontalScrollBar()->value() + delta.x());
         verticalScrollBar()->setValue(verticalScrollBar()->value() + delta.y());
-        
+
         // 更新标尺显示
 //        updateRuler();
     }
-    
+
     // 接受事件，防止传递给父类
     event->accept();
 }
@@ -201,9 +211,15 @@ void Workspace::setDrawCarMode(bool enable) {
     }
 }
 
-void Workspace::mousePressEvent(QMouseEvent *event)
-{
-    if (m_drawCarMode && event->button() == Qt::LeftButton) {
+void Workspace::mousePressEvent(QMouseEvent *event) {
+    if (m_toolMode == Eraser && event->button() == Qt::LeftButton) {
+        m_erasing = true;
+        m_erasedThisDrag.clear();
+        eraseAt(event->pos());
+        event->accept();
+        return;
+    }
+    if (m_toolMode == DrawCar && event->button() == Qt::LeftButton) {
         qDebug() << "[Workspace] mousePressEvent triggered";
         QFile file(":/icons/distributehorizontally.svg");
         qDebug() << "SVG exists:" << file.exists();
@@ -219,6 +235,46 @@ void Workspace::mousePressEvent(QMouseEvent *event)
         return;
     }
     QGraphicsView::mousePressEvent(event);
+}
+
+void Workspace::mouseReleaseEvent(QMouseEvent *event) {
+    if (m_toolMode == Eraser && event->button() == Qt::LeftButton) {
+        m_erasing = false;
+        m_erasedThisDrag.clear();
+        event->accept();
+        return;
+    }
+    QGraphicsView::mouseReleaseEvent(event);
+}
+
+void Workspace::eraseAt(const QPoint &viewPos) {
+    QPointF scenePos = mapToScene(viewPos);
+    QList<QGraphicsItem*> itemsAt = scene()->items(scenePos);
+    for (QGraphicsItem* item : itemsAt) {
+        QGraphicsEllipseItem* ellipse = dynamic_cast<QGraphicsEllipseItem*>(item);
+        if (ellipse && !m_erasedThisDrag.contains(ellipse)) {
+            m_erasedThisDrag.insert(ellipse);
+            ellipse->setParentItem(nullptr); // 解除父子关系
+            scene()->removeItem(ellipse);
+            delete ellipse;
+            break; // 只擦除最上面一个点
+        }
+    }
+}
+
+void Workspace::setToolMode(int mode) {
+    m_toolMode = static_cast<ToolMode>(mode);
+    if (m_toolMode == DrawCar) {
+        QPixmap carPixmap(":/icons/distributehorizontally.svg");
+        QPixmap scaledPixmap = carPixmap.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        this->setCursor(QCursor(scaledPixmap));
+    } else if (m_toolMode == Eraser) {
+        QPixmap eraserPixmap(":/icons/eraser.svg");
+        QPixmap scaledPixmap = eraserPixmap.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        this->setCursor(QCursor(scaledPixmap));
+    } else {
+        this->unsetCursor();
+    }
 }
 
 

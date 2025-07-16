@@ -57,5 +57,6 @@
         <file>icons/zoomin.svg</file>
         <file>icons/findandrefresh.svg</file>
         <file>icons/drawing.svg</file>
+        <file>icons/eraser.svg</file>
     </qresource>
 </RCC>

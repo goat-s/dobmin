@@ -23,6 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->leftBar->addWidget(m_leftbar);
 //    ui->verticalLayout_2->addWidget(m_leftbar);
 
+    // 只需连接一次信号，解耦具体按钮
+    connect(m_leftbar, &leftbar::toolChanged, ui->workspace, &Workspace::setToolMode);
+
     // 连接 carButton 点击进入画小车模式
     connect(m_leftbar->findChild<QToolButton*>("carButton"), &QToolButton::clicked, this, [=]() {
         ui->workspace->setDrawCarMode(true);
